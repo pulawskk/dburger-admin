@@ -7,4 +7,9 @@
 
 <h1 [style.color]="h1Style ? 'green' : 'yellow'">HOME 3</h1>
 
+<h1 [ngStyle]="{
+  'color': h1Style ? 'red' : 'blue',
+  'font-size': !h1Style ? '1em' : '4m'
+}">HOME 4</h1>
+
 <button (click)="firstClick()">Click me</button>
