@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DataService } from "../data.service";
+import {Data} from "@angular/router";
 
 @Component({
   selector: 'app-contact',
@@ -12,21 +14,27 @@ export class ContactComponent implements OnInit {
   submitted: boolean = false;
   success: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  dataServicePost: DataService;
+
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) {
     this.messageForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required]
     })
+
+    this.dataServicePost = dataService;
   }
 
   onSubmit() {
     this.submitted = true;
 
+    this.dataServicePost.createUser();
+
     if (this.messageForm.invalid) {
       return;
-    }
 
+    }
     this.success = true;
   }
 
