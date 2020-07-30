@@ -29,12 +29,11 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    this.dataServicePost.createUser();
-
     if (this.messageForm.invalid) {
       return;
-
     }
+
+    this.dataServicePost.createUser(this.messageForm);
     this.success = true;
   }
 
